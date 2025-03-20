@@ -1,6 +1,8 @@
 package com.nostratech;
 
 //this is pojo class
+
+
 public class Author {
 
     private String name;

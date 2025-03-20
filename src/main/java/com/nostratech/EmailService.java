@@ -1,34 +1,43 @@
 package com.nostratech;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 
-import java.util.Properties;
-
+@Service
 public class EmailService {
-    private String username;
-    private String password;
+    // private String username;
+    // private String password;
 
-    private final Properties prop;
+    private final Session session;
 
-    public EmailService(String host, int port, String username, String password) {
-        prop = new Properties();
-        prop.put("mail.smtp.auth", true);
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", host);
-        prop.put("mail.smtp.port", port);
-        prop.put("mail.smtp.ssl.trust", host);
+    // private final Properties prop;
 
-        this.username = username;
-        this.password = password;
+    public EmailService(Session session) {
+        super();
+        this.session = session;
+
+        // We move to ApplicationContext.xml
+        // prop = new Properties();
+        // prop.put("mail.smtp.auth", true);
+        // prop.put("mail.smtp.starttls.enable", "true");
+        // prop.put("mail.smtp.host", host);
+        // prop.put("mail.smtp.port", port);
+        // prop.put("mail.smtp.ssl.trust", host);
+
+        // We move to ApplicationContext.xml
+        // this.username = username;
+        // this.password = password;
     }
 
     public void sendMail() throws Exception {
 
-        Session session = getSession();
+        // We move in Annotation Base or Java Config
+        // Session session = getSession();
 
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("from@gmail.com"));
@@ -47,13 +56,14 @@ public class EmailService {
     }
 
 
-    private Session getSession() {
-        Session session = Session.getInstance(prop, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-        return session;
-    }
+    // We move to ApplicationContext.xml
+    // private Session getSession() {
+    //     Session session = Session.getInstance(prop, new Authenticator() {
+    //         @Override
+    //         protected PasswordAuthentication getPasswordAuthentication() {
+    //             return new PasswordAuthentication(username, password);
+    //         }
+    //     });
+    //     return session;
+    // }
 }
